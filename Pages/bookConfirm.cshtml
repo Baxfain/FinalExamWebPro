@@ -1,0 +1,98 @@
+@page
+@model EastOutHotel.Pages.BookConfirmModel
+@{
+    ViewBag.Title = "Reservation Confirmed - East Out Hotel";
+
+    // Fallback logic similar to JSP:
+    var guestName = !string.IsNullOrEmpty(Model.UserFullName)
+        ? Model.UserFullName
+        : Model.FullNameFromForm;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="@Url.Content("~/images/logo.png")">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    @Html.Partial("_Header")
+
+    <main class="page-content">
+        <section class="content-grid-section">
+            <div class="container">
+
+                <div class="confirmation-wrapper">
+                    <h2 class="room-page-title" style="text-align:center;">
+                        <i class="fas fa-check-circle" style="color:#2ecc71; margin-right:10px;"></i>
+                        Reservation Successful!
+                    </h2>
+
+                    <p style="text-align:center; max-width:650px; margin:0 auto 30px; font-size:1.1rem;">
+                        Thank you,
+                        <strong>@guestName</strong>
+                        ! Your stay at East Out Hotel has been successfully booked.
+                    </p>
+
+                    <div class="booking-summary" style="margin: 0 auto; max-width: 600px;">
+                        <h3>Your Booking Details</h3>
+
+                        <div class="summary-item">
+                            <span>Guest Name:</span>
+                            <strong>@guestName</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Phone Number:</span>
+                            <strong>@Model.Phone</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Total Cost:</span>
+                            <strong>@Model.TotalCost</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Dates:</span>
+                            <strong>@Model.DateRange</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Payment Method:</span>
+                            <strong>@Model.PaymentMethod</strong>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <p class="summary-note">
+                            A confirmation email has been sent to your registered email address.
+                            We look forward to welcoming you!
+                        </p>
+                    </div>
+
+                    <div style="text-align:center; margin-top:40px;">
+                        <a href="@Url.Page("/Index")" class="btn btn-book">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    @Html.Partial("_Footer")
+
+    <script src="@Url.Content("~/js/translation.js")"></script>
+    <script src="@Url.Content("~/js/script.js")"></script>
+</body>
+</html>
